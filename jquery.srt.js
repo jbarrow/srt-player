@@ -30,10 +30,10 @@
 
 		// Load the subtitles in a blocking manner
 		$.ajax({
-			url: settings.srt_track,
+			url: settings.default_url + settings.srt_track,
 			success: function(data) {
 				var sections = data.split("\n\n");
-				console.log(sections.length)
+
 				$.each(sections, function(index, value) {
 					var lines = value.split("\n");
 					var subtitle_data = { 
@@ -53,20 +53,30 @@
 			$obj = $(this)
 
 			play_subtitles = setInterval(function() {
+				var current_subtitle = 0;
+
+				if($obj[0].currentTime > subtitles[current_subtitle].et) {
+					$("#data").empty();
+				}
+
 				$.each(subtitles, function(index, subtitle) {
 					if(subtitle.st > $obj[0].currentTime)
 						return false;
 					else if(subtitle.st < $obj[0].currentTime && subtitle.et >= $obj[0].currentTime) {
-						// This needs to be cleaned up!
-						$("#data").empty();
-						$.each(subtitle.da, function(index, value) {
-							$("#data").append(value + "<br />");
-						});
+						if(index == current_subtitle) {
+							return false;
+						} else {
+							current_subtitle = index;
+							$("#data").empty();
+							$.each(subtitle.da, function(index, value) {
+								$("#data").append(value + "<br />");
+							});
+						}
 					}
-					// TODO: Make it disappear after end-time
+
 				});
 
-			}, 100);
+			}, settings.poll_time);
 		});
 
 		this.on('pause', function() {
