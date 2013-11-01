@@ -21,12 +21,16 @@
 		var settings = $.extend({
 			srt_track: this.attr("srt-track"),
 			default_url: "",
-			poll_time: 100
-			// id for srt area
-			// html styling?
+			poll_time: 100,
+			srt_elem: "subtitles"
 		}, options);
 
 		subtitles = [];
+
+		// Check if the HTML element exists, and create it if it doesn't
+		if($(settings.srt_elem).length == 0) {
+			$(this).after( "<div id='" + settings.srt_elem + "'></div>" );
+		}
 
 		// Load the subtitles in a blocking manner
 		$.ajax({
@@ -56,7 +60,7 @@
 				var current_subtitle = 0;
 
 				if($obj[0].currentTime > subtitles[current_subtitle].et) {
-					$("#data").empty();
+					$("#" + settings.srt_elem).empty();
 				}
 
 				$.each(subtitles, function(index, subtitle) {
@@ -67,9 +71,9 @@
 							return false;
 						} else {
 							current_subtitle = index;
-							$("#data").empty();
+							$("#" + settings.srt_elem).empty();
 							$.each(subtitle.da, function(index, value) {
-								$("#data").append(value + "<br />");
+								$("#" + settings.srt_elem).append(value + "<br />");
 							});
 						}
 					}
