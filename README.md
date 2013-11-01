@@ -53,7 +53,7 @@ __default__: 100 -- I've found that for most SRT files this is sufficient. Feel 
 
 The id on the page in which to place the subtitles. If this id doesn't exist, it is appended after the video element. Use this if you wish to build a custom video player.
 
-__default__: #subtitles
+__default__: subtitles -- _Note_: There is no leading "#" on this element!
 
 Contributing
 ---
