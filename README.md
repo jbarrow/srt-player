@@ -1,7 +1,7 @@
 jQuery SRT Player
 ===
 
-The jQuery SRT player extends the capabilities of the HTML5 video player to be able to play SRT files in the browser. It's usage is meant to be as simple as possible.
+The jQuery SRT player extends the capabilities of the HTML5 video player to be able to play SRT files in the browser. It's usage is meant to be as simple as possible. -- I will add a demo from the Accentivize site as soon as it is up.
 
 Usage
 ---
