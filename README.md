@@ -26,6 +26,9 @@ __Step 3__: Specify an SRT file track from within the video attribute
 ```
 Actually, this third step is optional, as you can simply specify the SRT file from the options that you pass into the .srt() call.
 
+### Usage with <audio> or <video>
+
+An interesting consequence of this being completely built upon HTML5 is that it can also be used to play SRT files for <audio> elements as well. The steps for setting it up to do so are exactly the same as with a <video> element.
 
 Options
 ---
